@@ -40,11 +40,12 @@
             );
             
             // Push to 'data' 
-            array_push($post_arr['data'], $post_item);
+            array_push($posts_arr['data'], $post_item);
         }
-
         // Turn it to JSON & output
-        echo json_encode($post_arr);
+        var_dump($posts_arr);
+        echo json_encode($posts_arr);
+        
     }
     else 
     {
