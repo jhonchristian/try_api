@@ -1,39 +1,32 @@
 <?php
-//  Headers
+    // Headers
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
     header('Access-Control-Allow-Methods: POST');
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once('../../config/Database.php');
-    include_once('../../models/Post.php');
+    include_once('../../models/Category.php');
 
     // Instantiate DB
     $database = new Database();
     $db = $database->connect();
 
     // Instantiate blog post object
-    $post = new Post($db);
+    $category = new Category($db);
 
-    // Get raw posted data
+    // Get Raw data
     $data = json_decode(file_get_contents("php://input"));
 
-    $post->title = $data->title;
-    $post->body = $data->body;
-    $post->author = $data->author;
-    $post->category_id = $data->category_id;
+    $category->name = $data->name;
 
     // Create Post
-    if($post->create())
+    if($category->create())
     {
-        echo json_encode(
-            array('message' => 'Post Created')
-        );
+        echo json_encode(array('message' =>'Category Created'));
     }
     else 
     {
-        echo json_encode(
-            array('message' => 'Post Not Created')
-        );
+        echo json_encode(array('message' => 'Category Not Created'));
     }
 ?>
