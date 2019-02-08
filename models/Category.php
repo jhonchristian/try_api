@@ -94,5 +94,59 @@
                 return false;
             }
         }
+
+        // Update Categery 
+        public function update()
+        {
+            $query = 'UPDATE '.$this->table.' SET name = :name WHERE id = :id';
+
+            // Prepare Statement
+            $stmt = $this->conn->prepare($query);
+
+            // Clean Data
+            $this->name  = htmlspecialchars(strip_tags($this->name));
+            $this->id  = htmlspecialchars(strip_tags($this->id));
+            
+            // Bind Param
+            $stmt->bindParam(':name', $this->name);
+            $stmt->bindParam(':id', $this->id);
+
+            // Execute
+            if($stmt->execute())
+            {
+                return true;
+            }
+            else 
+            {
+                printf('Error: %s.\n', $stmt->error);
+                return false;
+            }
+        }
+
+        // Delete Categery 
+        public function delete()
+        {
+            $query = 'DELETE FROM '.$this->table.' WHERE id = :id';
+
+            // Prepare Statement
+            $stmt = $this->conn->prepare($query);
+
+            // Clean Data
+            $this->id  = htmlspecialchars(strip_tags($this->id));
+            
+            // Bind Param
+            $stmt->bindParam(':id', $this->id);
+
+            // Execute
+            if($stmt->execute())
+            {
+                return true;
+            }
+            else 
+            {
+                printf('Error: %s.\n', $stmt->error);
+                return false;
+            }
+        }
     }
 ?>
