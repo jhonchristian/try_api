@@ -30,6 +30,6 @@
     );
 
     // Make JSON
-    var_dump($post_arr);
+    //var_dump($post_arr);
     print_r(json_encode($post_arr));
 ?>

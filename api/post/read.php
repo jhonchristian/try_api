@@ -43,7 +43,7 @@
             array_push($posts_arr['data'], $post_item);
         }
         // Turn it to JSON & output
-        var_dump($posts_arr);
+        //var_dump($posts_arr);
         echo json_encode($posts_arr);
         
     }
