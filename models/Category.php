@@ -50,14 +50,20 @@
             // Bind Parameters
             $stmt->bindParam(':id', $this->id);
 
-            // Execute
+            // Execute first so we can fetch the data
             if($stmt->execute())
             {
-                return true;
+                // Fetch Value
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                // Set Property
+                $this->id = $row['id'];
+                $this->name = $row['name'];
+                $this->created_at = $row['created_at'];
             }
             else 
             {
-                printf('Error: %s.\n', $stmt->error);
+                prinf("Error %s.\n", $stmt->error);
                 return false;
             }
         }
